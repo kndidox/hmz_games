@@ -1,0 +1,176 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/games/balloon_pop/balloon_pop.gd" id="1_bpop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.12, 0.15, 0.22, 0.98)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 12
+
+[node name="BalloonPop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_bpop")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.10, 0.14, 0.22, 1)
+
+[node name="BalloonContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="HUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "◀ MENÚ"
+
+[node name="Spacer" type="Control" parent="HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 24
+text = "Puntos: 0"
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="HUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LivesLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "❤️❤️❤️"
+vertical_alignment = 1
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.9
+
+[node name="GameOverModal" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(480, 360)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverModal"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverModal/MarginContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 30
+text = "¡FIN DE LA PARTIDA!"
+horizontal_alignment = 1
+
+[node name="NewRecordBadge" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+text = "🎉 ¡NUEVO RÉCORD! 🎉"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.9, 1)
+theme_override_font_sizes/font_size = 24
+text = "Puntuación Final: 0"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.80, 0.90, 1)
+theme_override_font_sizes/font_size = 18
+text = "Mejor Récord: 0"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonBox" type="HBoxContainer" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="RetryButton" type="Button" parent="GameOverModal/MarginContainer/VBoxContainer/ButtonBox"]
+custom_minimum_size = Vector2(140, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Reintentar"
+
+[node name="ExitButton" type="Button" parent="GameOverModal/MarginContainer/VBoxContainer/ButtonBox"]
+custom_minimum_size = Vector2(140, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Salir al Menú"

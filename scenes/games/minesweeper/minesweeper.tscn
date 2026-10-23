@@ -1,0 +1,447 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/games/minesweeper/minesweeper.gd" id="1_ms"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_easy"]
+bg_color = Color(0.16, 0.22, 0.28, 0.95)
+border_width_left = 3
+border_color = Color(0.24, 0.78, 0.45, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 18.0
+content_margin_top = 16.0
+content_margin_right = 18.0
+content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_med"]
+bg_color = Color(0.16, 0.22, 0.28, 0.95)
+border_width_left = 3
+border_color = Color(0.28, 0.55, 0.92, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 18.0
+content_margin_top = 16.0
+content_margin_right = 18.0
+content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_hard"]
+bg_color = Color(0.16, 0.22, 0.28, 0.95)
+border_width_left = 3
+border_color = Color(0.92, 0.45, 0.22, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 18.0
+content_margin_top = 16.0
+content_margin_right = 18.0
+content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.12, 0.15, 0.22, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28, 0.35, 0.48, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 14
+
+[node name="Minesweeper" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ms")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.09, 0.12, 0.18, 1)
+
+[node name="LevelSelectView" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelSelectView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 36
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectView/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="HeaderBar" type="HBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BackButton" type="Button" parent="LevelSelectView/MarginContainer/VBoxContainer/HeaderBar"]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "◀ MENÚ"
+
+[node name="TitleLabel" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/HeaderBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.95, 0.88, 1)
+theme_override_font_sizes/font_size = 28
+text = "BUSCAMINAS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DummySpacer" type="Control" parent="LevelSelectView/MarginContainer/VBoxContainer/HeaderBar"]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+
+[node name="Subtitle" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.82, 0.92, 1)
+theme_override_font_sizes/font_size = 20
+text = "Selecciona el tamaño del mapa:"
+horizontal_alignment = 1
+
+[node name="CardsContainer" type="VBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="EasyCard" type="PanelContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_easy")
+
+[node name="HBox" type="HBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/EasyCard"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="VBox" type="VBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/EasyCard/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/EasyCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.35, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 24
+text = "Pequeño"
+
+[node name="Details" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/EasyCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.92, 1)
+theme_override_font_sizes/font_size = 15
+text = "7 × 9  •  8 minas"
+
+[node name="RecordLabel" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/EasyCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.28, 1)
+theme_override_font_sizes/font_size = 14
+text = "Récord: 0 pts"
+
+[node name="Button" type="Button" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/EasyCard/HBox"]
+custom_minimum_size = Vector2(110, 54)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "JUGAR"
+
+[node name="MediumCard" type="PanelContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_med")
+
+[node name="HBox" type="HBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/MediumCard"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="VBox" type="VBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/MediumCard/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/MediumCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.40, 0.70, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Mediano"
+
+[node name="Details" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/MediumCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.92, 1)
+theme_override_font_sizes/font_size = 15
+text = "9 × 12  •  16 minas"
+
+[node name="RecordLabel" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/MediumCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.28, 1)
+theme_override_font_sizes/font_size = 14
+text = "Récord: 0 pts"
+
+[node name="Button" type="Button" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/MediumCard/HBox"]
+custom_minimum_size = Vector2(110, 54)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "JUGAR"
+
+[node name="HardCard" type="PanelContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_hard")
+
+[node name="HBox" type="HBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/HardCard"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="VBox" type="VBoxContainer" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/HardCard/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/HardCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.95, 0.55, 0.30, 1)
+theme_override_font_sizes/font_size = 24
+text = "Grande"
+
+[node name="Details" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/HardCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.92, 1)
+theme_override_font_sizes/font_size = 15
+text = "11 × 15  •  30 minas"
+
+[node name="RecordLabel" type="Label" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/HardCard/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.28, 1)
+theme_override_font_sizes/font_size = 14
+text = "Récord: 0 pts"
+
+[node name="Button" type="Button" parent="LevelSelectView/MarginContainer/VBoxContainer/CardsContainer/HardCard/HBox"]
+custom_minimum_size = Vector2(110, 54)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "JUGAR"
+
+[node name="GameView" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="Control" parent="GameView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 110.0
+grow_horizontal = 2
+
+[node name="TopBar" type="HBoxContainer" parent="GameView/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 34.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BackButton" type="Button" parent="GameView/HUD/TopBar"]
+custom_minimum_size = Vector2(96, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "◀ MENÚ"
+
+[node name="MinesLabel" type="Label" parent="GameView/HUD/TopBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 20
+text = "🚩 16"
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="GameView/HUD/TopBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 20
+text = "⏱️ 00:00"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="GameView/HUD/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ToolToggleButton" type="Button" parent="GameView/HUD/TopBar"]
+custom_minimum_size = Vector2(125, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "⛏️ EXCAVAR"
+
+[node name="RestartButton" type="Button" parent="GameView/HUD/TopBar"]
+custom_minimum_size = Vector2(50, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🔄"
+
+[node name="BoardArea" type="Control" parent="GameView"]
+layout_mode = 1
+anchor_top = 0.10
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameView/BoardArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="GameView/BoardArea/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 7
+
+[node name="GameOverModal" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(480, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -200.0
+offset_right = 240.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverModal"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverModal/MarginContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "¡VICTORIA!"
+horizontal_alignment = 1
+
+[node name="NewRecordBadge" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+text = "🎉 ¡NUEVO RÉCORD! 🎉"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.92, 0.96, 1)
+theme_override_font_sizes/font_size = 20
+text = "Tiempo: 00:00"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 22
+text = "Puntuación: 0 pts"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.78, 0.88, 1)
+theme_override_font_sizes/font_size = 17
+text = "Récord: 0 pts"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonBox" type="VBoxContainer" parent="GameOverModal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RetryButton" type="Button" parent="GameOverModal/MarginContainer/VBoxContainer/ButtonBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Reintentar"
+
+[node name="ChangeLevelButton" type="Button" parent="GameOverModal/MarginContainer/VBoxContainer/ButtonBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Cambiar Nivel"
+
+[node name="ExitButton" type="Button" parent="GameOverModal/MarginContainer/VBoxContainer/ButtonBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Salir al Menú"
